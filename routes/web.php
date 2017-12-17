@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'EmployerDepartmentsController@index');
+
+Auth::routes();
+
+Route::group(['prefix' => 'employers'], function () {
 });
+
+Route::group(['prefix' => 'departments'], function () {
+    Route::get('/', ['as' => 'departments.index', 'uses' => 'DepartmentsController@index']);
+    Route::post('/add', ['as' => 'departments.add', 'uses' => 'DepartmentsController@add']);
+    Route::post('/edit', ['as' => 'departments.edit', 'uses' => 'DepartmentsController@edit']);
+    Route::post('/delete', ['as' => 'departments.delete', 'uses' => 'DepartmentsController@delete']);
+});
+
+Route::group(['prefix' => 'employers-departments'], function () {
+    Route::get('/', ['as' => 'employers-departments.index', 'uses' => 'EmployerDepartmentsController@index']);
+});
+
+
+
