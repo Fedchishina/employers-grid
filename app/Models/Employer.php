@@ -20,4 +20,19 @@ class Employer extends Model
     {
         return $this->hasMany(EmployerDepartment::class);
     }
+
+    public function departments()
+    {
+        return $this->belongsToMany(Department::class, 'employers_departments');
+    }
+
+    public function departmentsStr(){
+        $departmentsStr = '';
+        foreach ($this->departments as $department){
+            $departmentsStr .= $department->name . ', ';
+        }
+        return rtrim($departmentsStr, ", ");
+    }
+
+
 }

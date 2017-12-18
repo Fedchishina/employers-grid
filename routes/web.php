@@ -16,6 +16,9 @@ Route::get('/', 'EmployerDepartmentsController@index');
 Auth::routes();
 
 Route::group(['prefix' => 'employers'], function () {
+    Route::get('/', ['as' => 'employers.index', 'uses' => 'EmployersController@index']);
+    Route::get('/add', ['as' => 'employers.add-form', 'uses' => 'EmployersController@getAddForm']);
+    Route::post('/add', ['as' => 'employers.add', 'uses' => 'EmployersController@add']);
 });
 
 Route::group(['prefix' => 'departments'], function () {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
+use App\Models\Employer;
 use App\Models\EmployerDepartment;
 use Illuminate\Http\Request;
 
@@ -14,6 +16,8 @@ class EmployerDepartmentsController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $departments = Department::get();
+        $employers = Employer::orderBy('last_name')->get();
+        return view('index', compact('departments', 'employers'));
     }
 }

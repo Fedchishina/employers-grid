@@ -39,7 +39,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{route('employers-departments.index')}}">Сетка</a></li>
                         <li><a href="{{route('departments.index')}}">Отделы</a></li>
-                        <li><a href="#">Сотрудники</a></li>
+                        <li><a href="{{route('employers.index')}}">Сотрудники</a></li>
                     </ul>
                 </div>
             </div>
