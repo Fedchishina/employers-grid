@@ -1,6 +1,6 @@
-<div class="modal fade" id="modal-container-delete-department" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-container-delete" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form action="{{route('departments.delete')}}" method="post" role="form" class="form">
+        <form action="" method="post" role="form" class="form">
             {{csrf_field()}}
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,13 +8,13 @@
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Удаление отдела
+                        Удаление
                     </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label >
-                            Вы действительно хотите удалить отдел?
+                            Вы действительно хотите удалить запись?
                         </label>
                         <input type="hidden" class="form-control" name="id"/>
                     </div>

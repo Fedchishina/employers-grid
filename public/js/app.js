@@ -995,12 +995,13 @@ var app = new Vue({
 
 var $form = $('.form');
 var $errBlock = $form.find('.error-list');
-var $modalDel = $('#modal-container-delete-department');
+var $modalDel = $('#modal-container-delete');
 
 $(document).on("click", ".btn-delete", function () {
     var $this = $(this);
     $errBlock.html('');
     $modalDel.find("input[name='id']").val($this.data('id'));
+    $modalDel.find(".form").attr('action', $this.data('route'));
 });
 
 $(document).on("click", ".btn-edit", function () {

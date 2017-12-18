@@ -16,9 +16,9 @@ class CreateEmployersDepartmentsTable extends Migration
         Schema::create('employers_departments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employer_id')->unsigned();
-            $table->foreign('employer_id')->references('id')->on('employers');
+            $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
             $table->integer('department_id')->unsigned();
-            $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }

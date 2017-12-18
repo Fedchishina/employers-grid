@@ -37,9 +37,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{route('employers-departments.index')}}">Сетка</a></li>
-                        <li><a href="{{route('departments.index')}}">Отделы</a></li>
-                        <li><a href="{{route('employers.index')}}">Сотрудники</a></li>
+                        <li @if(isset($activePage) && ($activePage == 'employers-departments')) class="active" @endif><a href="{{route('employers-departments.index')}}">Сетка</a></li>
+                        <li @if(isset($activePage) && ($activePage == 'departments')) class="active" @endif><a href="{{route('departments.index')}}">Отделы</a></li>
+                        <li @if(isset($activePage) && ($activePage == 'employers')) class="active" @endif><a href="{{route('employers.index')}}">Сотрудники</a></li>
                     </ul>
                 </div>
             </div>

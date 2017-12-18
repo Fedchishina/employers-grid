@@ -16,7 +16,8 @@ class DepartmentsController extends Controller
     public function index()
     {
         $departments = Department::with('employerDepartments')->get();
-        return view('pages.department.index', compact('departments'));
+        $activePage = 'departments';
+        return view('pages.department.index', compact('departments', 'activePage'));
     }
 
     public function add(DepartmentRequest $request)

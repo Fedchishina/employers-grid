@@ -18,6 +18,7 @@ class EmployerDepartmentsController extends Controller
     {
         $departments = Department::get();
         $employers = Employer::orderBy('last_name')->get();
-        return view('index', compact('departments', 'employers'));
+        $activePage = 'employers-departments';
+        return view('index', compact('departments', 'employers', 'activePage'));
     }
 }

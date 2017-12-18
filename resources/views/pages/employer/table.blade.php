@@ -23,7 +23,7 @@
                 <a class="btn btn-primary" href="#" title="изменить сотрудника">
                     <span><i class="fa fa-pencil-square-o"></i></span>
                 </a>
-                <a class="btn btn-primary btn-delete" href="#" title="удалить сотрудника" data-id="{{$employer->id}}">
+                <a class="btn btn-primary btn-delete" href="#modal-container-delete" data-toggle="modal" title="удалить сотрудника" data-id="{{$employer->id}}" data-route="{{route('employers.delete')}}">
                     <span><i class="fa fa-trash"></i></span>
                 </a>
             </td>

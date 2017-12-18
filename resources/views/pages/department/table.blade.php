@@ -17,7 +17,7 @@
             <a class="btn btn-primary btn-edit" href="#modal-container-edit-department" data-toggle="modal" data-params="{{json_encode($department->toArray())}}" title="изменить отдел">
                 <span><i class="fa fa-pencil-square-o"></i></span>
             </a>
-            <a class="btn btn-primary btn-delete" href="#modal-container-delete-department" data-toggle="modal" title="удалить отдел" data-id="{{$department->id}}">
+            <a class="btn btn-primary btn-delete" href="#modal-container-delete" data-toggle="modal" title="удалить отдел" data-id="{{$department->id}}" data-route="{{route('departments.delete')}}">
                 <span><i class="fa fa-trash"></i></span>
             </a>
         </td>

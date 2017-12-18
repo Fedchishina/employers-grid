@@ -15,7 +15,7 @@
                         </div>
                         @include(('pages.department.add'))
                         @include(('pages.department.edit'))
-                        @include(('pages.department.delete'))
+                        @include(('modal.delete'))
                     </div>
                 </div>
             </div>

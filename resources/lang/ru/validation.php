@@ -112,9 +112,6 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
-        'name' => [
-            'required' => 'название должно быть заполнено',
-        ],
     ],
 
     /*
@@ -135,7 +132,14 @@ return [
     */
 
     'attributes'           => [
-        //
+        'name' => '"название"',
+
+        'first_name' => '"имя"',
+        'last_name' => '"фамилия"',
+        'middle_name' => '"отчество"',
+        'gender' => '"пол"',
+        'salary' => '"зарплата"',
+        'departments' => '"отделы"',
     ],
 
 ];
