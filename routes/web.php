@@ -19,6 +19,8 @@ Route::group(['prefix' => 'employers'], function () {
     Route::get('/', ['as' => 'employers.index', 'uses' => 'EmployersController@index']);
     Route::get('/add', ['as' => 'employers.add-form', 'uses' => 'EmployersController@getAddForm']);
     Route::post('/add', ['as' => 'employers.add', 'uses' => 'EmployersController@add']);
+    Route::get('/edit/{id}', ['as' => 'employers.edit-form', 'uses' => 'EmployersController@getEditForm']);
+    Route::post('/edit/{id}', ['as' => 'employers.edit', 'uses' => 'EmployersController@edit']);
     Route::post('/delete', ['as' => 'employers.delete', 'uses' => 'EmployersController@delete']);
 });
 

@@ -34,6 +34,28 @@ class EmployersController extends Controller
         return redirect()->back()->with('success-message', $message);
     }
 
+    public function getEditForm($id)
+    {
+        $employer = Employer::find($id);
+        $departments = Department::get();
+        return view('pages.employer.edit', compact('departments', 'employer'));
+    }
+
+    public function edit($id, EmployerRequest $request)
+    {
+        $employer = Employer::find($id);
+        $input = $request->all();
+        $employer->update($input);
+        if ($newDepartments = array_diff($input['departments'], $employer->departments->pluck('id')->toArray())) {
+            $employer->departments()->attach($newDepartments);
+        }
+        if ($deleteDepartments = array_diff($employer->departments->pluck('id')->toArray(), $input['departments'])) {
+            $employer->departments()->detach($deleteDepartments);
+        }
+        $message = ($employer->save()) ? 'информация о сотруднике успешно изменена' : 'при добавлении сотрудника возникли ошибки';
+        return redirect()->back()->with('success-message', $message);
+    }
+
     public function delete(Request $request)
     {
         Employer::destroy($request->get('id'));
