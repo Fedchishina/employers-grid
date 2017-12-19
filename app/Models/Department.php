@@ -26,4 +26,9 @@ class Department extends Model
             ->max('salary');
         return empty($maxSalary) ? 0 : $maxSalary;
     }
+
+    public function employers()
+    {
+        return $this->belongsToMany(Employer::class, 'employers_departments');
+    }
 }

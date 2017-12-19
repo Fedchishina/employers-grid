@@ -16,7 +16,6 @@
                         <label >
                             Вы действительно хотите удалить запись?
                         </label>
-                        <input type="hidden" class="form-control" name="id"/>
                     </div>
 
                     <div class="form-group">

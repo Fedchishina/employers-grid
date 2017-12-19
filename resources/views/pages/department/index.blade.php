@@ -8,7 +8,7 @@
                     <div class="panel-heading">Отделы</div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <a class="btn btn-primary btn-large" href="#modal-container-add-department" data-toggle="modal"><span><i class="fa fa-plus"></i> добавить отдел</span></a>
+                            <a class="btn btn-primary btn-add" href="#modal-container-add-department" data-toggle="modal"><span><i class="fa fa-plus"></i> добавить отдел</span></a>
                         </div>
                         <div class="table-content">
                             @include('pages.department.table')

@@ -123,13 +123,13 @@ class EmployersController extends Controller
 
     /**
      * delete Employer
-     * @param Request $request
+     * @param $id - id of Employer
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            Employer::destroy($request->get('id'));
+            Employer::destroy($id);
             $employers = Employer::orderBy('last_name')->get();
             return view('pages.employer.table', compact('employers'));
         }

@@ -33,7 +33,7 @@ class DepartmentsController extends Controller
             return view('pages.department.table', compact('departments'));
         }
         catch (\Exception $e) {
-            abort(500, 'Something went wrong. ' . $e->getMessage());
+            abort(500, 'Что-то пошло не так... Ошибка сервера.');
         }
     }
 
@@ -53,27 +53,36 @@ class DepartmentsController extends Controller
                 return view('pages.department.table', compact('departments'));
             }
             catch (\Exception $e) {
-                abort(500, 'Something went wrong. ' . $e->getMessage());
+                abort(500, 'Что-то пошло не так... Ошибка сервера.');
             }
         } else {
-            abort(500, 'Something went wrong. Department not found');
+            abort(500, 'Ошибка сервера: не найден отдел');
         }
     }
 
     /**
      * delete department
-     * @param Request $request
+     * @param $id - id of department
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function delete(Request $request)
+    public function delete($id)
     {
-        try {
-            Department::destroy($request->get('id'));
-            $departments = Department::with('employerDepartments')->get();
-            return view('pages.department.table', compact('departments'));
-        }
-        catch (\Exception $e) {
-            abort(500, 'Something went wrong. ' . $e->getMessage());
+        $department = Department::find($id);
+        if ($department) {
+            if ($department->employers->count() > 0) {
+                abort(500, 'нельзя удалить отдел, в котором есть сотрудники');
+            } else {
+                try {
+                    Department::destroy($id);
+                    $departments = Department::with('employerDepartments')->get();
+                    return view('pages.department.table', compact('departments'));
+                }
+                catch (\Exception $e) {
+                    abort(500, 'Что-то пошло не так... Ошибка сервера.');
+                }
+            }
+        } else {
+            abort(500, 'Ошибка сервера: не найден отдел');
         }
     }
 

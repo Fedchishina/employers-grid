@@ -14,7 +14,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">
-                            название
+                            название*
                         </label>
                         <input type="text" class="form-control" id="name" name="name"/>
                     </div>
