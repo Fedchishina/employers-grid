@@ -1,7 +1,5 @@
 <?php
 
-use Faker\Generator as Faker;
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -13,7 +11,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -21,5 +19,17 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Models\Employer::class, function (Faker\Generator $faker) {
+    $faker = Faker\Factory::create('ru_RU');
+    $middleNames = ['Сергеевич', 'Иванович', 'Петрович'];
+    return [
+        'first_name' => $faker->firstName('male'),
+        'last_name' => $faker->lastName,
+        'middle_name' => $middleNames[rand(0,2)],
+        'gender' => 'm',
+        'salary' => rand(100, 50000)
     ];
 });
