@@ -10,9 +10,8 @@ use Illuminate\Http\Request;
 class EmployerDepartmentsController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * return view with grid of Employers
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {

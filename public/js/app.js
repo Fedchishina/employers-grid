@@ -1042,6 +1042,13 @@ $form.on('submit', function (event) {
             //viewing list of errors on edit short url form
             $errBlock.html(errorList);
         }
+
+        console.log(err);
+
+        if (err.status == 500) {
+            var errorList = '<ul><li>Операция не выполнена. Серверная ошибка.</li></ul>';
+            $errBlock.html(errorList);
+        }
     });
 });
 

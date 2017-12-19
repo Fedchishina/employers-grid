@@ -8,9 +8,9 @@
                     <div class="panel-heading">Редактирование сотрудника</div>
 
                     <div class="panel-body">
-                        @if (session('success-message'))
-                            <div class="alert alert-danger">
-                                {{ session('success-message') }}
+                        @if (session('message'))
+                            <div class="alert alert-{{session('status')}}">
+                                {{ session('message') }}
                             </div>
                         @endif
                         <form class="form-horizontal" method="POST" action="{{ route('employers.edit', ['id' => $employer->id]) }}">
