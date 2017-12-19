@@ -25,18 +25,22 @@ var $form = $('.form');
 var $errBlock = $form.find('.error-list');
 var $modalDel = $('#modal-container-delete');
 
+//deleting rows in table
 $(document).on("click", ".btn-delete", function() {
     var $this = $(this);
     $errBlock.html('');
+    //insert value id and route for deleting row
     $modalDel.find( "input[name='id']" ).val( $this.data('id') );
     $modalDel.find(".form").attr('action', $this.data('route'));
 });
 
+//show edit modal form for Department
 $(document).on("click", ".btn-edit", function() {
     var $this = $(this);
     $errBlock.html('');
     var params = $this.data('params');
     var $modalEdit = $('#modal-container-edit-department');
+    //insert input params of Department
     $modalEdit.find( "input[name='id']" ).val(params.id );
     $modalEdit.find( "input[name='name']" ).val(params.name );
 });
@@ -67,14 +71,13 @@ $form.on('submit', function (event) {
                 }
             }
             errorList += '</ul>';
-            //viewing list of errors on edit short url form
+            //viewing list of errors
             $errBlock.html(errorList);
         }
 
-        console.log(err);
-
         if (err.status == 500) {
             var errorList = '<ul><li>Операция не выполнена. Серверная ошибка.</li></ul>';
+            //viewing error
             $errBlock.html(errorList);
         }
     })

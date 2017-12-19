@@ -19,6 +19,7 @@ class CreateEmployersDepartmentsTable extends Migration
             $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
             $table->integer('department_id')->unsigned();
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->unique(['department_id', 'employer_id']);
             $table->timestamps();
         });
     }
