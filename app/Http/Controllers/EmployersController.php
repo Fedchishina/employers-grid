@@ -17,7 +17,7 @@ class EmployersController extends Controller
      */
     public function index()
     {
-        $employers = Employer::orderBy('last_name')->get();
+        $employers = Employer::orderBy('last_name')->paginate(5);
         $activePage = 'employers';
         return view('pages.employer.index', compact('employers', 'activePage'));
     }

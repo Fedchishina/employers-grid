@@ -8,6 +8,7 @@
                     <div class="panel-heading">Сетка</div>
                     <div class="panel-body">
                         @include('pages.employer-departments.table')
+                        {{ $employers->links() }}
                     </div>
                 </div>
             </div>

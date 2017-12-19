@@ -20,6 +20,7 @@
                         <div class="table-content">
                             @include('pages.employer.table')
                         </div>
+                        {{ $employers->links() }}
                         @include(('modal.delete'))
                     </div>
                 </div>

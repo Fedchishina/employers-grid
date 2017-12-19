@@ -8,6 +8,10 @@
 composer install
 ```
 - copy .env-example to .env and change settings of DB
+- run the command:
+```sh
+php artisan key:generate
+```
 - run the command for creating DB tables:
 ```sh
 php artisan migrate
