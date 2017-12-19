@@ -32,3 +32,6 @@ npm run dev
 ## Using
 In this application you can create departments, employees, and establish connections between departments and employees.
 These links are shown in the grid of employees.
+
+## Demo project
+http://employers.zzz.com.ua
