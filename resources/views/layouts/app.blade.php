@@ -41,6 +41,12 @@
                         <li @if(isset($activePage) && ($activePage == 'departments')) class="active" @endif><a href="{{route('departments.index')}}">Отделы</a></li>
                         <li @if(isset($activePage) && ($activePage == 'employers')) class="active" @endif><a href="{{route('employers.index')}}">Сотрудники</a></li>
                     </ul>
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- language locale -->
+                        <li><a href="{{ route('setlocale', ['locale' => 'ru']) }}">RU</a></li>
+                        <li><a href="{{ route('setlocale', ['locale' => 'en']) }}">EN</a></li>
+                    </ul>
                 </div>
             </div>
         </nav>

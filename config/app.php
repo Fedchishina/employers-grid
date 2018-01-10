@@ -80,6 +80,11 @@ return [
 
     'locale' => 'ru',
 
+    /**
+     * available array of locales
+     */
+    'locales' => ['ru', 'en'],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

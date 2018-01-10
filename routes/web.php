@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('setlocale/{locale}', ['as' => 'setlocale', 'uses' => 'EmployersController@setLocale']);
+
 Route::get('/', 'EmployerDepartmentsController@index');
 
 Auth::routes();
