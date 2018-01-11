@@ -15,7 +15,7 @@ class EmployersController extends Controller
      */
     public function index()
     {
-        $employers = Employer::orderBy('last_name')->paginate(5);
+        $employers = Employer::getEmployers();
         $activePage = 'employers';
         return view('pages.employer.index', compact('employers', 'activePage'));
     }
@@ -37,24 +37,12 @@ class EmployersController extends Controller
      */
     public function add(EmployerRequest $request)
     {
-        try {
-            $input = $request->all();
-            $employer = Employer::create($input);
-            //insert departments, where employer is working
-            $employer->departments()->attach($request->get('departments'));
-            $employer->save();
-            return redirect()->back()->with([
-                'status' => 'success',
-                'message' => 'сотрудник успешно добавлен'
-            ]);
-        }
-        catch (\Exception $e) {
-            return redirect()->back()->with([
-                'status' => 'danger',
-                'message' => 'Что-то пошло не так... Ошибка сервера.',
-                'errorMessage' => $e->getMessage()
-            ]);
-        }
+        $input = $request->all();
+        Employer::createWithDepartments($input);
+        return redirect()->back()->with([
+            'status' => 'success',
+            'message' => __('variables.employers.success_add')
+        ]);
     }
 
     /**
@@ -64,16 +52,9 @@ class EmployersController extends Controller
      */
     public function getEditForm($id)
     {
-        $employer = Employer::find($id);
-        if($employer) {
-            $departments = Department::get();
-            return view('pages.employer.edit', compact('departments', 'employer'));
-        } else {
-            return redirect()->back()->with([
-                'status' => 'danger',
-                'message' => 'Что-то пошло не так... Ошибка сервера. Не найден сотрудник'
-            ]);
-        }
+        $employer = Employer::findorfail($id);
+        $departments = Department::get();
+        return view('pages.employer.edit', compact('departments', 'employer'));
     }
 
     /**
@@ -84,39 +65,13 @@ class EmployersController extends Controller
      */
     public function edit($id, EmployerRequest $request)
     {
-        $employer = Employer::find($id);
-        if ($employer) {
-            try {
-                $input = $request->all();
-                $employer->update($input);
-                if ($newDepartments = array_diff($input['departments'], $employer->departments->pluck('id')->toArray())) {
-                    //insert new departments of Employer
-                    $employer->departments()->attach($newDepartments);
-                }
-
-                if ($deleteDepartments = array_diff($employer->departments->pluck('id')->toArray(), $input['departments'])) {
-                    //delete departments
-                    $employer->departments()->detach($deleteDepartments);
-                }
-                $employer->save();
-                return redirect()->back()->with([
-                    'status' => 'success',
-                    'message' => 'информация о сотруднике успешно изменена'
-                ]);
-            }
-            catch (\Exception $e) {
-                return redirect()->back()->with([
-                    'status' => 'danger',
-                    'message' => 'Что-то пошло не так... Ошибка сервера.',
-                    'errorMessage' => $e->getMessage()
-                ]);
-            }
-        } else {
-            return redirect()->back()->with([
-                'status' => 'danger',
-                'message' => 'Что-то пошло не так... Ошибка сервера. Не найден сотрудник'
-            ]);
-        }
+        $employer = Employer::findorfail($id);
+        $input = $request->all();
+        $employer->updateEmployerWithDepartments($input);
+        return redirect()->back()->with([
+            'status' => 'success',
+            'message' => __('variables.employers.success_edit'),
+        ]);
     }
 
     /**
@@ -126,17 +81,8 @@ class EmployersController extends Controller
      */
     public function delete($id)
     {
-        try {
-            Employer::destroy($id);
-            $employers = Employer::orderBy('last_name')->get();
-            return view('pages.employer.table', compact('employers'));
-        }
-        catch (\Exception $e) {
-            return redirect()->back()->with([
-                'status' => 'danger',
-                'message' => 'Что-то пошло не так... Ошибка сервера.',
-                'errorMessage' => $e->getMessage()
-            ]);
-        }
+        Employer::destroy($id);
+        $employers = Employer::getEmployers();
+        return view('pages.employer.table', compact('employers'));
     }
 }

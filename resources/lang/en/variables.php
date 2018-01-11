@@ -49,9 +49,10 @@ return [
         'forms' => [
             'add_title' => 'Adding department',
             'edit_title' => 'Editing department'
-        ]
-    ],
+        ],
+        'delete_warning' => 'you can not delete departments that have employees',
 
+    ],
     /*
      * employers
      */
@@ -68,7 +69,9 @@ return [
         'forms' => [
             'add_title' => 'Adding employer',
             'edit_title' => 'Editing employer'
-        ]
+        ],
+        'success_add' => 'employer successfully added',
+        'success_edit' => 'employer successfully changed'
     ],
 
 ];

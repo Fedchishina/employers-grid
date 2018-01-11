@@ -14,7 +14,7 @@ class DepartmentsController extends Controller
      */
     public function index()
     {
-        $departments = Department::with('employerDepartments')->get();
+        $departments = Department::getAllDepartments();
         $activePage = 'departments';
         return view('pages.department.index', compact('departments', 'activePage'));
     }
@@ -27,14 +27,9 @@ class DepartmentsController extends Controller
     public function add(DepartmentRequest $request)
     {
         $input = $request->all();
-        try {
-            Department::create($input);
-            $departments = Department::with('employerDepartments')->get();
-            return view('pages.department.table', compact('departments'));
-        }
-        catch (\Exception $e) {
-            abort(500, 'Что-то пошло не так... Ошибка сервера.');
-        }
+        Department::create($input);
+        $departments = Department::getAllDepartments();
+        return view('pages.department.table', compact('departments'));
     }
 
     /**
@@ -45,19 +40,10 @@ class DepartmentsController extends Controller
     public function edit(DepartmentRequest $request)
     {
         $input = $request->all();
-        $department = Department::find($input['id']);
-        if($department) {
-            try {
-                $department->update($input);
-                $departments = Department::with('employerDepartments')->get();
-                return view('pages.department.table', compact('departments'));
-            }
-            catch (\Exception $e) {
-                abort(500, 'Что-то пошло не так... Ошибка сервера.');
-            }
-        } else {
-            abort(500, 'Ошибка сервера: не найден отдел');
-        }
+        $department = Department::findOrFail($input['id']);
+        $department->update($input);
+        $departments = Department::getAllDepartments();
+        return view('pages.department.table', compact('departments'));
     }
 
     /**
@@ -67,23 +53,8 @@ class DepartmentsController extends Controller
      */
     public function delete($id)
     {
-        $department = Department::find($id);
-        if ($department) {
-            if ($department->employers->count() > 0) {
-                abort(500, 'нельзя удалить отдел, в котором есть сотрудники');
-            } else {
-                try {
-                    Department::destroy($id);
-                    $departments = Department::with('employerDepartments')->get();
-                    return view('pages.department.table', compact('departments'));
-                }
-                catch (\Exception $e) {
-                    abort(500, 'Что-то пошло не так... Ошибка сервера.');
-                }
-            }
-        } else {
-            abort(500, 'Ошибка сервера: не найден отдел');
-        }
+        Department::findOrFail($id)->destroy($id);
+        $departments = Department::getAllDepartments();
+        return view('pages.department.table', compact('departments'));
     }
-
 }
