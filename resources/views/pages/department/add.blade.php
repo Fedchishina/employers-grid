@@ -8,13 +8,13 @@
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Добавление отдела
+                        @lang('variables.department.forms.add_title')
                     </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">
-                            название*
+                            @lang('variables.department.columns.name')*
                         </label>
                         <input type="text" class="form-control" id="name" name="name"/>
                     </div>
@@ -27,10 +27,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        Сохранить
+                        @lang('variables.buttons.save')
                     </button>
                     <button type="button" class="btn btn-default btn-close" data-dismiss="modal">
-                        Отмена
+                        @lang('variables.buttons.close')
                     </button>
                 </div>
             </div>

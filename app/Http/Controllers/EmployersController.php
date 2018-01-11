@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Employer;
-use Illuminate\Http\Request;
 use App\Http\Requests\EmployerRequest;
-use Mockery\Exception;
-use Illuminate\Support\Facades\Session;
 
 class EmployersController extends Controller
 {
@@ -141,17 +138,5 @@ class EmployersController extends Controller
                 'errorMessage' => $e->getMessage()
             ]);
         }
-    }
-
-    /**
-     * set the application locale
-     * @param $locale
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function setLocale($locale) {
-        if (in_array($locale, \Config::get('app.locales'))) {
-            Session::put('locale', $locale);
-        }
-        return redirect()->back();
     }
 }

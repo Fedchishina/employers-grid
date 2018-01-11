@@ -8,13 +8,13 @@
                         ×
                     </button>
                     <h4 class="modal-title" id="myModalLabel">
-                        Удаление
+                        @lang('variables.delete_form.title')
                     </h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label >
-                            Вы действительно хотите удалить запись?
+                            @lang('variables.delete_form.message')
                         </label>
                     </div>
 
@@ -26,10 +26,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">
-                        Удалить
+                        @lang('variables.buttons.del')
                     </button>
                     <button type="button" class="btn btn-default btn-close" data-dismiss="modal">
-                        Отмена
+                        @lang('variables.buttons.close')
                     </button>
                 </div>
             </div>

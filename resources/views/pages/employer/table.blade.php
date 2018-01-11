@@ -1,13 +1,13 @@
 <table class="table">
     <thead>
     <tr>
-        <th>фамилия</th>
-        <th>имя</th>
-        <th>отчество</th>
-        <th>пол</th>
-        <th>зарплата</th>
-        <th>отделы, где работает</th>
-        <th>действия</th>
+        <th>@lang('variables.employers.columns.last_name')</th>
+        <th>@lang('variables.employers.columns.first_name')</th>
+        <th>@lang('variables.employers.columns.middle_name')</th>
+        <th>@lang('variables.employers.columns.gender')</th>
+        <th>@lang('variables.employers.columns.salary')</th>
+        <th>@lang('variables.employers.columns.departments')</th>
+        <th>@lang('variables.employers.columns.actions')</th>
     </tr>
     </thead>
     <tbody>
@@ -16,14 +16,14 @@
             <td>{{ $employer->last_name }}</td>
             <td>{{ $employer->first_name }}</td>
             <td>{{ $employer->middle_name }}</td>
-            <td>{{ $employer->gender=='m' ? 'мужчина' : 'женщина' }}</td>
+            <td>{{ $employer->gender=='m' ? __('variables.gender.male') : __('variables.gender.female') }}</td>
             <td>{{ $employer->salary }}</td>
             <td>{{ $employer->departmentsStr() }}</td>
             <td>
-                <a class="btn btn-primary" href="{{route('employers.edit-form',['id' => $employer->id])}}" title="изменить сотрудника">
+                <a class="btn btn-primary" href="{{route('employers.edit-form',['id' => $employer->id])}}" title="@lang('variables.buttons.edit')">
                     <span><i class="fa fa-pencil-square-o"></i></span>
                 </a>
-                <a class="btn btn-primary btn-delete" href="#modal-container-delete" data-toggle="modal" title="удалить сотрудника" data-route="{{route('employers.delete', ['id' =>$employer->id])}}">
+                <a class="btn btn-primary btn-delete" href="#modal-container-delete" data-toggle="modal" title="@lang('variables.buttons.del')" data-route="{{route('employers.delete', ['id' =>$employer->id])}}">
                     <span><i class="fa fa-trash"></i></span>
                 </a>
             </td>
