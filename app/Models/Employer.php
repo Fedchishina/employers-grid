@@ -59,7 +59,7 @@ class Employer extends Model
      * update employer with input departments
      * @param $params
      */
-    public function updateEmployerWithDepartments($params)
+    public function updateWithDepartments($params)
     {
         $this->update($params);
         if ($newDepartments = array_diff($params['departments'], $this->departments->pluck('id')->toArray())) {
