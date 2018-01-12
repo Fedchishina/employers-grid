@@ -67,7 +67,7 @@ class EmployersController extends Controller
     {
         $employer = Employer::findorfail($id);
         $input = $request->all();
-        $employer->updateEmployerWithDepartments($input);
+        $employer->updateWithDepartments($input);
         return redirect()->back()->with([
             'status' => 'success',
             'message' => __('variables.employers.success_edit'),
